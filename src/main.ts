@@ -31,10 +31,15 @@ function init() {
     const imgData = ctx.getImageData(0, 0, CANVAS_SIZE, CANVAS_SIZE);
     const matrix = getMatrix(imgData);
 
-    for (let i = CANVAS_SIZE - 2; i >= 0; i--) {
+    for (let i = CANVAS_SIZE - 1; i >= 0; i--) {
       for (let j = CANVAS_SIZE - 1; j >= 0; j--) {
+        // this is the bottom row, only thing we are going to do here is to get rid of the transparencies on the brush pattern
+        if (i === CANVAS_SIZE - 1) {
+          matrix[i][j][3] = Number(matrix[i][j][3]) !== 255 ? 0 : 255;
+        }
+
         // if the current pixel is not empty (checking only last value, i.e., the alpha channel)
-        if (matrix[i][j][3] !== 0) {
+        else if (matrix[i][j][3] !== 0) {
           const belowIsEmpty = matrix[i + 1][j][3] === 0;
           const belowLeftIsEmpty = j > 0 && matrix[i + 1][j - 1][3] === 0;
           const belowRightIsEmpty = j < CANVAS_SIZE - 1 && matrix[i + 1][j + 1][3] === 0;
@@ -67,7 +72,7 @@ function init() {
           }
           // if the pixel can't drop anymore, get rid of transparencies on the brush pattern
           else {
-            matrix[i][j][3] === 255 / 2 ? 255 : 0;
+            matrix[i][j][3] = Number(matrix[i][j][3]) !== 255 ? 0 : 255;
           }
         }
       }
@@ -92,7 +97,7 @@ function init() {
     if (isMouseDown) {
       const position: IPosition = {
         x: event.offsetX,
-        y: event.offsetY
+        y: event.offsetY,
       };
       drawPixel(ctx, position, currentColor);
       currentColor = changeColor(currentColor);

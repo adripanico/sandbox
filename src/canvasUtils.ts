@@ -36,6 +36,12 @@ export function changeColor(color: IColor, warm = true): IColor {
 
 export function drawPixel(ctx: CanvasRenderingContext2D, pos: IPosition, color: IColor) {
   const pixelSize = BRUSH_PATTERN.length;
+
+  const area = ctx.getImageData(pos.x, pos.y, pixelSize, pixelSize);
+  if (area.data.some((color) => color !== 0)) {
+    return false;
+  }
+
   const pixel = ctx.createImageData(pixelSize, pixelSize);
   for (let i = 0; i < pixelSize; i++) {
     for (let j = 0; j < pixelSize; j++) {
@@ -46,6 +52,8 @@ export function drawPixel(ctx: CanvasRenderingContext2D, pos: IPosition, color: 
     }
   }
   ctx.putImageData(pixel, pos.x, pos.y);
+
+  return true;
 }
 
 export function getMatrix(imageData: ImageData): IMatrix {
@@ -59,7 +67,7 @@ export function getMatrix(imageData: ImageData): IMatrix {
         imageData.data[pixelStartIndex],
         imageData.data[pixelStartIndex + 1],
         imageData.data[pixelStartIndex + 2],
-        imageData.data[pixelStartIndex + 3]
+        imageData.data[pixelStartIndex + 3],
       ]);
     }
     matrix.push(row);
