@@ -1,3 +1,5 @@
-# sandbox
+# Sandbox
 
-[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/adripanico/sandbox)
+Small project to mess around with HTML Canvas.
+
+[DEMO](https://adripanico.github.io/sandbox/)
