@@ -1,4 +1,4 @@
-export const CANVAS_SIZE = 200;
+export const CANVAS_SIZE = 300;
 
 export const ROW_SIZE = CANVAS_SIZE * 4; // 4 numbers (r, g, b, a) per pixel
 
