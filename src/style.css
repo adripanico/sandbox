@@ -12,3 +12,17 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#canvas {
+  border: 1px solid black;
+  border-radius: 4px;
+  transform-origin: top;
+  transform: scale(2);
+}
