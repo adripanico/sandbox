@@ -2,8 +2,8 @@
 export type IColor = [number, number, number] | [number, number, number, number];
 
 export interface IPosition {
-    x: number;
-    y: number;
+  x: number;
+  y: number;
 }
 
 export type IMatrix = IColor[][];

@@ -34,21 +34,17 @@ export function changeColor(color: IColor, warm = true): IColor {
   return color;
 }
 
-export function drawPixel(
-  ctx: CanvasRenderingContext2D,
-  pos: IPosition,
-  color: IColor,
-) {
+export function drawPixel(ctx: CanvasRenderingContext2D, pos: IPosition, color: IColor) {
   const pixelSize = BRUSH_PATTERN.length;
   const pixel = ctx.createImageData(pixelSize, pixelSize);
   for (let i = 0; i < pixelSize; i++) {
     for (let j = 0; j < pixelSize; j++) {
-        pixel.data[i * pixelSize * 4 + j * 4] = color[0];
-        pixel.data[i * pixelSize * 4 + j * 4 + 1] = color[1];
-        pixel.data[i * pixelSize * 4 + j * 4 + 2] = color[2];
-        pixel.data[i * pixelSize * 4 + j * 4 + 3] = BRUSH_PATTERN[i][j] * 255;
+      pixel.data[i * pixelSize * 4 + j * 4] = color[0];
+      pixel.data[i * pixelSize * 4 + j * 4 + 1] = color[1];
+      pixel.data[i * pixelSize * 4 + j * 4 + 2] = color[2];
+      pixel.data[i * pixelSize * 4 + j * 4 + 3] = BRUSH_PATTERN[i][j] * 255;
     }
-  }  
+  }
   ctx.putImageData(pixel, pos.x, pos.y);
 }
 

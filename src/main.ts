@@ -52,10 +52,10 @@ function init() {
                   ? 'l'
                   : 'r'
                 : belowLeftIsEmpty
-                ? 'l'
-                : belowRightIsEmpty
-                ? 'r'
-                : undefined;
+                  ? 'l'
+                  : belowRightIsEmpty
+                    ? 'r'
+                    : undefined;
 
             if (direction === 'l') {
               matrix[i + 1][j - 1] = matrix[i][j];
