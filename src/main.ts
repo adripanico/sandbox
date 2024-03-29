@@ -67,7 +67,7 @@ function init() {
           }
           // if the pixel can't drop anymore, get rid of transparencies on the brush pattern
           else {
-            matrix[i][j][3] = 255 / 2 ? 255 : 0;
+            matrix[i][j][3] === 255 / 2 ? 255 : 0;
           }
         }
       }
@@ -92,7 +92,7 @@ function init() {
     if (isMouseDown) {
       const position: IPosition = {
         x: event.offsetX,
-        y: event.offsetY,
+        y: event.offsetY
       };
       drawPixel(ctx, position, currentColor);
       currentColor = changeColor(currentColor);

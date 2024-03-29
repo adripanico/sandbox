@@ -59,7 +59,7 @@ export function getMatrix(imageData: ImageData): IMatrix {
         imageData.data[pixelStartIndex],
         imageData.data[pixelStartIndex + 1],
         imageData.data[pixelStartIndex + 2],
-        imageData.data[pixelStartIndex + 3],
+        imageData.data[pixelStartIndex + 3]
       ]);
     }
     matrix.push(row);
