@@ -1,13 +1,15 @@
 import { IColor } from './models';
 
 interface IStore {
-  isMouseDown: boolean;
-  currentColor: IColor;
   canvas: HTMLCanvasElement | null;
+  currentColor: IColor;
+  currentMode: 'warm' | 'cold';
+  isMouseDown: boolean;
 }
 
 export const store: IStore = {
-  isMouseDown: false,
-  currentColor: [0, 0, 0],
   canvas: null,
+  currentColor: [0, 0, 0],
+  currentMode: 'warm',
+  isMouseDown: false,
 };

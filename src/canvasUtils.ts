@@ -3,9 +3,8 @@ import { IColor, IMatrix, IPosition } from './models';
 import { store } from './store';
 
 // iterates over warm or cold colors
-// TODO add a toggle to switch between color modes
-export function changeColor(warm = true) {
-  if (warm) {
+export function changeColor() {
+  if (store.currentMode === 'warm') {
     if (store.currentColor[0] < 255) {
       store.currentColor[0]++; // increase red channel
     } else if (store.currentColor[1] < 255) {
