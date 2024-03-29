@@ -82,7 +82,6 @@ function init() {
 
   canvas.addEventListener('mousedown', () => {
     isMouseDown = true;
-    console.log('hola')
   });
 
   canvas.addEventListener('mouseup', () => {
@@ -95,7 +94,6 @@ function init() {
         x: event.offsetX,
         y: event.offsetY,
       };
-      console.log(currentColor)
       drawPixel(ctx, position, currentColor);
       currentColor = changeColor(currentColor);
     }
