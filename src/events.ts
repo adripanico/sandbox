@@ -30,11 +30,19 @@ const switchColorMode = () => {
   document.getElementById('switch-btn')!.innerText = `switch to ${store.currentMode === 'cold' ? 'warm' : 'cold'}`;
 };
 
-const share = () => {
+const share = async () => {
+  const dataUrl = store.canvas!.toDataURL('image/png');
+  const blob = await (await fetch(dataUrl)).blob();
+  const filesArray = [
+    new File([blob], 'sandbox.png', {
+      type: blob.type,
+      lastModified: new Date().getTime(),
+    }),
+  ];
   const shareData: ShareData = {
-    files: [new File([store.canvas!.toDataURL('image/png')], 'image.png')],
-    text: 'Look what I did on https://adripanico.github.io/sandbox',
-    url: 'https://adripanico.github.io/sandbox',
+    files: filesArray,
+    text: 'Look what I did on https://adripanico.github.io/sandbox/',
+    url: 'https://adripanico.github.io/sandbox/',
   };
   if (navigator.canShare(shareData)) {
     navigator.share(shareData);
