@@ -30,6 +30,17 @@ const switchColorMode = () => {
   document.getElementById('switch-btn')!.innerText = `switch to ${store.currentMode === 'cold' ? 'warm' : 'cold'}`;
 };
 
+const share = () => {
+  const shareData: ShareData = {
+    files: [new File([store.canvas!.toDataURL('image/png')], 'image.png')],
+    text: 'Look what I did on https://adripanico.github.io/sandbox',
+    url: 'https://adripanico.github.io/sandbox',
+  };
+  if (navigator.canShare(shareData)) {
+    navigator.share(shareData);
+  }
+};
+
 export function startEvents() {
   store.canvas!.addEventListener('mousedown', setMouseDown);
   store.canvas!.addEventListener('touchstart', setMouseDown);
@@ -42,4 +53,9 @@ export function startEvents() {
 
   document.getElementById('reset-btn')!.addEventListener('click', cleanCanvas);
   document.getElementById('switch-btn')!.addEventListener('click', switchColorMode);
+  if (navigator.share !== undefined) {
+    const shareBtn = document.getElementById('share-btn');
+    shareBtn?.classList.remove('hidden');
+    shareBtn?.addEventListener('click', share);
+  }
 }
