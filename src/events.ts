@@ -30,24 +30,24 @@ const switchColorMode = () => {
   document.getElementById('switch-btn')!.innerText = `switch to ${store.currentMode === 'cold' ? 'warm' : 'cold'}`;
 };
 
-const share = async () => {
-  const dataUrl = store.canvas!.toDataURL('image/png');
-  const blob = await (await fetch(dataUrl)).blob();
-  const filesArray = [
-    new File([blob], 'sandbox.png', {
-      type: blob.type,
-      lastModified: new Date().getTime(),
-    }),
-  ];
-  const shareData: ShareData = {
-    files: filesArray,
-    text: 'Look what I did on https://adripanico.github.io/sandbox/',
-    url: 'https://adripanico.github.io/sandbox/',
-  };
-  if (navigator.canShare(shareData)) {
-    navigator.share(shareData);
-  }
-};
+// const share = async () => {
+//   const dataUrl = store.canvas!.toDataURL('image/png');
+//   const blob = await (await fetch(dataUrl)).blob();
+//   const filesArray = [
+//     new File([blob], 'sandbox.png', {
+//       type: blob.type,
+//       lastModified: new Date().getTime(),
+//     }),
+//   ];
+//   const shareData: ShareData = {
+//     files: filesArray,
+//     text: 'Look what I did on https://adripanico.github.io/sandbox/',
+//     url: 'https://adripanico.github.io/sandbox/',
+//   };
+//   if (navigator.canShare(shareData)) {
+//     navigator.share(shareData);
+//   }
+// };
 
 export function startEvents() {
   store.canvas!.addEventListener('mousedown', setMouseDown);
@@ -61,9 +61,9 @@ export function startEvents() {
 
   document.getElementById('reset-btn')!.addEventListener('click', cleanCanvas);
   document.getElementById('switch-btn')!.addEventListener('click', switchColorMode);
-  if (navigator.share !== undefined) {
-    const shareBtn = document.getElementById('share-btn');
-    shareBtn?.classList.remove('hidden');
-    shareBtn?.addEventListener('click', share);
-  }
+  // if (navigator.share !== undefined) {
+  //   const shareBtn = document.getElementById('share-btn');
+  //   shareBtn?.classList.remove('hidden');
+  //   shareBtn?.addEventListener('click', share);
+  // }
 }
